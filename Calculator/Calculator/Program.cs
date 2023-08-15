@@ -17,15 +17,69 @@
             double arg2;
             double result;
 
-            arg1 = 10;
-            arg2 = 20;
+            arg1 = EnterNumber("делимое");
+            arg2 = EnterNumber("делитель");
 
-            result = arg1 + arg2;
+            result = arg1 / arg2;
 
-            Console.WriteLine($"Сумма {arg1} и {arg2} равна {result}");
+            Console.WriteLine($"Частное {arg1} и {arg2} равно {result}");
 
             WaitForExit();
         }
+
+        /// <summary>
+        /// Ввод числа с клавиатуры
+        /// </summary>
+        /// <returns>Введённое число</returns>
+        public static double EnterNumber(string numberName)
+        {
+            // Здесь мы пытаемся что-то сделать
+            Console.WriteLine($"Введите {numberName}:");
+
+            while (true)
+            {
+                string enteredString = Console.ReadLine();
+
+                double result;
+
+                bool isSuccess = double.TryParse(enteredString, out result);
+
+                if (isSuccess)
+                {
+                    return result;
+                }
+
+                Console.WriteLine("Вы ввели не число, повторите ввод!");
+            }
+        }
+
+        // Закоменчено по львиному желанию в целях развития.
+        ///// <summary>
+        ///// Ввод числа с клавиатуры
+        ///// </summary>
+        ///// <returns>Введённое число</returns>
+        //public static double EnterNumber(string numberName)
+        //{
+        //    try
+        //    {
+        //        // Здесь мы пытаемся что-то сделать
+        //        Console.WriteLine($"Введите {numberName}:");
+
+        //        string enteredString = Console.ReadLine();
+
+        //        double number = double.Parse(enteredString);
+
+        //        return number;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Этот код вызовется, когда что-то пойдёт не так
+        //        Console.WriteLine($"Произошла ошибка: {ex.Message}");
+        //        WaitForExit();
+
+        //        return 0; // Этот 0 никогда не вернётся, программа умрёт в методе WaitForExit()
+        //    }
+        //}
 
         /// <summary>
         /// Метод ждёт разрешения от пользователя и завершает программу
