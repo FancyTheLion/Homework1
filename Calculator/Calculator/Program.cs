@@ -17,14 +17,51 @@
             double arg2;
             double result;
 
-            arg1 = EnterNumber("делимое");
-            arg2 = EnterNumber("делитель");
+            arg1 = EnterNumber("первое число");
+            arg2 = EnterNumber("второе число");
 
-            result = arg1 / arg2;
+            string operationName = EnterOperation();
+            string resultName;
 
-            Console.WriteLine($"Частное {arg1} и {arg2} равно {result}");
+            switch (operationName)
+            {
+                case "+":
+                    result = arg1 + arg2;
+                    resultName = "Сумма";
+                    break;
+
+                case "-":
+                    result = arg1 - arg2;
+                    resultName = "Разность";
+                    break;
+
+                case "*":
+                    result = arg1 * arg2;
+                    resultName = "Произведение";
+                    break;
+
+                case "/":
+                    result = arg1 / arg2;
+                    resultName = "Частное";
+                    break;
+
+                default:
+                    throw new Exception("Неизвестная операция над числами!");
+            }
+
+            Console.WriteLine($"{resultName} {arg1} и {arg2} равно {result}");
 
             WaitForExit();
+        }
+
+        /// <summary>
+        /// Ввод операции, которую нужно совершить
+        /// </summary>
+        public static string EnterOperation()
+        {
+            Console.WriteLine("Введите одну из операций: +, -, /, *");
+
+            return Console.ReadLine();
         }
 
         /// <summary>
